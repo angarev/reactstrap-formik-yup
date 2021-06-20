@@ -1,0 +1,11 @@
+.select {
+
+    &.form-control.is-invalid,
+    .was-validated .form-control:invalid {
+        background-position: right calc(.75em + .1875rem) center;
+    }
+    &.form-control.is-valid,
+    .was-validated .form-control:invalid {
+        background-position: right calc(.75em + .1875rem) center;
+    }
+}
