@@ -1,6 +1,5 @@
 import { useField } from 'formik';
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap';
-import PropTypes from 'prop-types';
 import { getClasses } from './Helpers';
 
 /**
@@ -10,7 +9,7 @@ import { getClasses } from './Helpers';
  * @param {*} className, //Boostrap classes
  * @returns
  */
-const InputComponent = ({ helperText, className, ...props }) => {
+const InputComponent = ({ helperText, className = '', ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
@@ -33,15 +32,3 @@ const InputComponent = ({ helperText, className, ...props }) => {
 };
 
 export default InputComponent;
-
-InputComponent.propTypes = {
-	user: PropTypes.shape({}),
-	onLogin: PropTypes.func.isRequired,
-	onLogout: PropTypes.func.isRequired,
-	onCreateAccount: PropTypes.func.isRequired,
-};
-
-InputComponent.defaultProps = {
-	helperText: '',
-	className: '',
-};
