@@ -17,7 +17,7 @@ let schema = Yup.object().shape({
 		.min(1, 'Please select at least one state')
 		.required('States is a required field'),
 	message: Yup.string().required('Message is a required field'),
-	posistion: Yup.string().required('Posistion is a required field'),
+	position: Yup.string().required('Posistion is a required field'),
 	file: Yup.mixed().required('A file is a required field'),
 	terms: Yup.array()
 		.min(1, 'Must Accept Terms and Conditions')
@@ -33,7 +33,7 @@ let initialValues = {
 	message: '',
 	terms: '',
 	file: '',
-	posistion: '',
+	position: '',
 };
 
 const stateOptions = [
@@ -135,7 +135,7 @@ function App() {
 							<Field
 								inline
 								id='radio1'
-								name='posistion'
+								name='position'
 								type='radio'
 								value='Developer'
 								as={RadioAndCheckBoxComponent}
@@ -144,7 +144,7 @@ function App() {
 							<Field
 								inline
 								id='radio2'
-								name='posistion'
+								name='position'
 								type='radio'
 								value='QA'
 								showError
