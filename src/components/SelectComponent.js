@@ -11,6 +11,7 @@ import { getClasses } from './Helpers';
  */
 const SelectComponent = ({
 	children,
+	required,
 	helperText,
 	className = '',
 	...props
@@ -23,6 +24,7 @@ const SelectComponent = ({
 				className={'label-color'}
 				hidden={!props.label ? true : false}>
 				{props.label}
+				{required && <span className='text-danger'> *</span>}
 			</Label>
 			<Input
 				{...props}

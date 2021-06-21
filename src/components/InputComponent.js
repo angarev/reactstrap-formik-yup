@@ -9,7 +9,7 @@ import { getClasses } from './Helpers';
  * @param {*} className, //Boostrap classes
  * @returns
  */
-const InputComponent = ({ helperText, className = '', ...props }) => {
+const InputComponent = ({ helperText, required, className = '', ...props }) => {
 	const [field, meta] = useField(props);
 
 	return (
@@ -19,6 +19,7 @@ const InputComponent = ({ helperText, className = '', ...props }) => {
 				className={'label-color'}
 				hidden={!props.label ? true : false}>
 				{props.label}
+				{required && <span className='text-danger'> *</span>}
 			</Label>
 			<Input
 				{...props}

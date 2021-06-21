@@ -13,7 +13,8 @@ import { getClasses } from './Helpers';
 
 const RadioAndCheckBoxComponent = ({
 	helperText,
-	inline = false,
+	inline,
+	required,
 	className = '',
 	showError = false,
 	...props
@@ -33,6 +34,7 @@ const RadioAndCheckBoxComponent = ({
 					className={'label-color'}
 					hidden={!props.label ? true : false}>
 					{props.label}
+					{required && <span className='text-danger'> *</span>}
 				</Label>
 				{helperText && <small class='form-text text-muted'>{helperText}</small>}
 			</FormGroup>

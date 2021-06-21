@@ -61,6 +61,7 @@ function App() {
 						<FormGroup row>
 							<Col xs={12} sm={6}>
 								<Field
+									required
 									id='firstName'
 									name='firstName'
 									type='input'
@@ -70,6 +71,7 @@ function App() {
 							</Col>
 							<Col xs={12} sm={6}>
 								<Field
+									required
 									id='lastName'
 									name='lastName'
 									type='input'
@@ -81,6 +83,7 @@ function App() {
 						<FormGroup row>
 							<Col sm={6}>
 								<Field
+									required
 									id='city'
 									name='city'
 									type='input'
@@ -90,6 +93,7 @@ function App() {
 							</Col>
 							<Col xs={12} sm={6}>
 								<Field
+									required
 									id='states'
 									name='states'
 									type='select'
@@ -107,6 +111,7 @@ function App() {
 						<FormGroup row>
 							<Col xs={12} sm={6}>
 								<Field
+									required
 									id='multiple'
 									name='multiple'
 									type='select'
@@ -122,6 +127,7 @@ function App() {
 							</Col>
 							<Col xs={12} sm={6}>
 								<Field
+									required
 									id='message'
 									name='message'
 									type='textarea'
@@ -133,6 +139,7 @@ function App() {
 						</FormGroup>
 						<FormGroup tag='fieldset'>
 							<Field
+								required
 								inline
 								id='radio1'
 								name='position'
@@ -142,6 +149,7 @@ function App() {
 								label='Developer'
 							/>
 							<Field
+								required
 								inline
 								id='radio2'
 								name='position'
@@ -155,6 +163,7 @@ function App() {
 						<FormGroup row>
 							<Col xs={12}>
 								<Field
+									required
 									id='file'
 									name='file'
 									type='file'
@@ -166,6 +175,7 @@ function App() {
 						<FormGroup row>
 							<Col xs={12}>
 								<Field
+									required
 									id='terms'
 									name='terms'
 									type='checkbox'
