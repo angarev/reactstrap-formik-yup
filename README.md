@@ -74,6 +74,8 @@ Once you create your form with a formik you can use them with formik Field
 </Field>
 
 <Field
+    customInput//Optional
+    required //Optional
     inline
     id='radio2'
     name='position'

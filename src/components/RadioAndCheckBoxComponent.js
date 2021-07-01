@@ -1,5 +1,6 @@
+import React from 'react';
 import { useField } from 'formik';
-import { FormFeedback, FormGroup, Input, Label } from 'reactstrap';
+import { FormFeedback, FormGroup, CustomInput, Input, Label } from 'reactstrap';
 import { getClasses } from './Helpers';
 
 /**
@@ -13,31 +14,65 @@ import { getClasses } from './Helpers';
 
 const RadioAndCheckBoxComponent = ({
 	helperText,
-	inline,
 	required,
+	inline,
 	className = '',
+	customInput = false,
 	showError = false,
 	...props
 }) => {
 	const [field, meta] = useField(props);
+
+	const requiredLabel = (label) => {
+		return (
+			<>
+				{label} <span className='text-danger'> *</span>
+			</>
+		);
+	};
+
 	return (
 		<>
-			<FormGroup check inline={inline}>
-				<Input
-					{...props}
-					{...field}
-					className={` ${className} ${getClasses(meta.touched, meta.error)}`}
-				/>{' '}
-				<Label
-					check
-					for={props.id}
-					className={'label-color'}
-					hidden={!props.label ? true : false}>
-					{props.label}
-					{required && <span className='text-danger'> *</span>}
-				</Label>
-				{helperText && <small class='form-text text-muted'>{helperText}</small>}
-			</FormGroup>
+			{customInput ? (
+				<>
+					<CustomInput
+						inline={inline}
+						{...props}
+						{...field}
+						invalid={meta.touched && meta.error}
+						label={required ? requiredLabel(props.label) : props.label}
+						className={`${className}`}
+					/>
+					{helperText && (
+						<small class='form-text text-muted'>{helperText}</small>
+					)}
+				</>
+			) : (
+				<FormGroup check inline={inline}>
+					<>
+						<Input
+							{...props}
+							{...field}
+							className={` ${className} ${getClasses(
+								meta.touched,
+								meta.error
+							)}`}
+						/>
+						<Label
+							check
+							for={props.id}
+							className={'label-color'}
+							hidden={!props.label ? true : false}>
+							{props.label}
+							{required && <span className='text-danger'> *</span>}
+						</Label>
+					</>
+
+					{helperText && (
+						<small class='form-text text-muted'>{helperText}</small>
+					)}
+				</FormGroup>
+			)}
 			{meta.touched && meta.error && showError && (
 				<FormFeedback style={{ display: 'block' }}>{meta.error}</FormFeedback>
 			)}
