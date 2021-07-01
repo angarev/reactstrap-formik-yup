@@ -39,7 +39,7 @@ const RadioAndCheckBoxComponent = ({
 						inline={inline}
 						{...props}
 						{...field}
-						invalid={meta.touched && meta.error}
+						invalid={Boolean(meta.touched && meta.error)}
 						label={required ? requiredLabel(props.label) : props.label}
 						className={`${className}`}
 					/>
