@@ -1,3 +1,4 @@
+import React from 'react';
 import { useField } from 'formik';
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap';
 import { getClasses } from './Helpers';
@@ -9,7 +10,13 @@ import { getClasses } from './Helpers';
  * @param {*} className, //Boostrap classes
  * @returns
  */
-const InputComponent = ({ helperText, required, className = '', ...props }) => {
+const InputComponent = ({
+	helperText,
+	required,
+	className = '',
+	validation = true,
+	...props
+}) => {
 	const [field, meta] = useField(props);
 
 	return (
@@ -24,10 +31,14 @@ const InputComponent = ({ helperText, required, className = '', ...props }) => {
 			<Input
 				{...props}
 				{...field}
-				className={`${className} ${getClasses(meta.touched, meta.error)}`}
+				className={`${className} ${
+					validation ? getClasses(meta.touched, meta.error) : ''
+				}`}
 			/>
 			{helperText && <small class='form-text text-muted'>{helperText}</small>}
-			{meta.touched && meta.error && <FormFeedback>{meta.error}</FormFeedback>}
+			{meta.touched && meta.error && validation && (
+				<FormFeedback>{meta.error}</FormFeedback>
+			)}
 		</FormGroup>
 	);
 };

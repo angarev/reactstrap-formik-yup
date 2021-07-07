@@ -1,3 +1,4 @@
+import React from 'react';
 import { useField } from 'formik';
 import { FormFeedback, FormGroup, Input, Label } from 'reactstrap';
 import { getClasses } from './Helpers';
@@ -13,6 +14,7 @@ const SelectComponent = ({
 	children,
 	required,
 	helperText,
+	validation = true,
 	className = '',
 	...props
 }) => {
@@ -29,15 +31,16 @@ const SelectComponent = ({
 			<Input
 				{...props}
 				{...field}
-				className={`select ${className} ${getClasses(
-					meta.touched,
-					meta.error
-				)}`}>
+				className={`select ${className} ${
+					validation ? getClasses(meta.touched, meta.error) : ''
+				}`}>
 				{props.defaultoption && <option value=''>{props.defaultoption}</option>}
 				{children}
 			</Input>
 			{helperText && <small class='form-text text-muted'>{helperText}</small>}
-			{meta.touched && meta.error && <FormFeedback>{meta.error}</FormFeedback>}
+			{meta.touched && meta.error && validation && (
+				<FormFeedback>{meta.error}</FormFeedback>
+			)}
 		</FormGroup>
 	);
 };

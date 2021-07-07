@@ -52,9 +52,11 @@ Once you create your form with a formik you can use them with formik Field
 
 ```js
 <Field
+    required //Optional
     id='firstName'
     name='firstName'
     type='input'
+    validation={false}//Optional - show or hide validation
     as={InputComponent}
     label='First name'
 />
@@ -81,7 +83,7 @@ Once you create your form with a formik you can use them with formik Field
     name='position'
     type='radio'
     value='Developer'
-    showError
+    showError //Optional
     as={RadioAndCheckBoxComponent}
     label='Developer'
 />
