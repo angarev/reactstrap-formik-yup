@@ -1,6 +1,6 @@
 import React from "react";
 import { useField } from "formik";
-import { FormFeedback, FormGroup, CustomInput, Input, Label } from "reactstrap";
+import { FormFeedback, CustomInput } from "reactstrap";
 import { getClasses } from "./Helpers";
 
 /**
