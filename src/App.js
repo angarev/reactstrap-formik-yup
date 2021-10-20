@@ -1,47 +1,49 @@
-import * as Yup from 'yup';
-import { Field, Formik } from 'formik';
-import { FormGroup, Button, Form, Col } from 'reactstrap';
+import * as Yup from "yup";
+import { Field, Formik } from "formik";
+import { FormGroup, Button, Form, Col } from "reactstrap";
 
 import {
 	InputComponent,
 	SelectComponent,
-	RadioAndCheckBoxComponent,
-} from './components';
+	RadioComponent,
+	CheckboxComponent,
+} from "./components";
 
 let schema = Yup.object().shape({
-	firstName: Yup.string().required('First name is a required field'),
-	lastName: Yup.string().required('Last name is a required field'),
-	city: Yup.string().required('City is a required field'),
-	states: Yup.string().required('States is a required field'),
+	firstName: Yup.string().required("First name is a required field"),
+	lastName: Yup.string().required("Last name is a required field"),
+	city: Yup.string().required("City is a required field"),
+	states: Yup.string().required("States is a required field"),
 	multiple: Yup.array()
-		.min(1, 'Please select at least one state')
-		.required('States is a required field'),
-	message: Yup.string().required('Message is a required field'),
-	position: Yup.string().required('Posistion is a required field'),
-	file: Yup.mixed().required('A file is a required field'),
-	terms: Yup.array()
-		.min(1, 'Must Accept Terms and Conditions')
-		.required('Terms and Conditions is a required field'),
+		.min(1, "Please select at least one state")
+		.required("States is a required field"),
+	message: Yup.string().required("Message is a required field"),
+	position: Yup.string().required("Posistion is a required field"),
+	file: Yup.mixed().required("A file is a required field"),
+	terms: Yup.boolean().oneOf(
+		[true],
+		"You must accept the terms and conditions"
+	),
 });
 
 let initialValues = {
-	firstName: '',
-	lastName: '',
-	city: '',
-	states: '',
+	firstName: "",
+	lastName: "",
+	city: "",
+	states: "",
 	multiple: [],
-	message: '',
-	terms: '',
-	file: '',
-	position: '',
+	message: "",
+	terms: true,
+	file: "",
+	position: "",
 };
 
 const stateOptions = [
-	{ value: 'AL', label: 'Alabama' },
-	{ value: 'AK', label: 'Alaska' },
-	{ value: 'AS', label: 'American Samoa' },
-	{ value: 'AZ', label: 'Arizona' },
-	{ value: 'AR', label: 'Arkansas' },
+	{ value: "AL", label: "Alabama" },
+	{ value: "AK", label: "Alaska" },
+	{ value: "AS", label: "American Samoa" },
+	{ value: "AZ", label: "Arizona" },
+	{ value: "AR", label: "Arkansas" },
 ];
 
 function App() {
@@ -55,7 +57,8 @@ function App() {
 					console.log(data);
 					setSubmitting(false);
 					resetForm();
-				}}>
+				}}
+			>
 				{({ values, errors, handleSubmit, isSubmitting }) => (
 					<Form onSubmit={handleSubmit}>
 						<FormGroup row>
@@ -99,7 +102,8 @@ function App() {
 									type='select'
 									as={SelectComponent}
 									label='State'
-									defaultoption='Choose...'>
+									defaultoption='Choose...'
+								>
 									{stateOptions.map(({ value, label }) => (
 										<option key={value} value={value}>
 											{label}
@@ -117,7 +121,8 @@ function App() {
 									type='select'
 									as={SelectComponent}
 									label='Multiple select'
-									multiple>
+									multiple
+								>
 									{stateOptions.map(({ value, label }) => (
 										<option key={value} value={value}>
 											{label}
@@ -141,11 +146,12 @@ function App() {
 							<Field
 								required
 								inline
+								showError={false}
 								id='radio1'
 								name='position'
 								type='radio'
 								value='Developer'
-								as={RadioAndCheckBoxComponent}
+								as={RadioComponent}
 								label='Developer'
 							/>
 							<Field
@@ -155,8 +161,7 @@ function App() {
 								name='position'
 								type='radio'
 								value='QA'
-								showError
-								as={RadioAndCheckBoxComponent}
+								as={RadioComponent}
 								label='QA'
 							/>
 						</FormGroup>
@@ -178,10 +183,7 @@ function App() {
 									required
 									id='terms'
 									name='terms'
-									type='checkbox'
-									value='agree'
-									showError
-									as={RadioAndCheckBoxComponent}
+									as={CheckboxComponent}
 									label='Terms and Conditions'
 								/>
 							</Col>
