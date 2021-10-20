@@ -51,6 +51,7 @@ import {InputComponent,	SelectComponent,RadioAndCheckBoxComponent} from 'reactst
 Once you create your form with a formik you can use them with formik Field
 
 ```js
+//Input
 <Field
     required //Optional
     id='firstName'
@@ -61,6 +62,7 @@ Once you create your form with a formik you can use them with formik Field
     label='First name'
 />
 
+//Select
 <Field
     id='states'
     name='states'
@@ -75,18 +77,44 @@ Once you create your form with a formik you can use them with formik Field
     ))}
 </Field>
 
+//Multiple select
 <Field
-    customInput//Optional
-    required //Optional
+    required
+    id='multiple'
+    name='multiple'
+    type='select'
+    as={SelectComponent}
+    label='Multiple select'
+    multiple
+>
+    {stateOptions.map(({ value, label }) => (
+        <option key={value} value={value}>
+            {label}
+        </option>
+    ))}
+</Field>
+
+//Radio
+//Options - required, showError
+<Field
     inline
-    id='radio2'
+    id='radio'
     name='position'
     type='radio'
     value='Developer'
-    showError //Optional
     as={RadioAndCheckBoxComponent}
     label='Developer'
 />
+
+//Checkbox
+//Options - required, showError
+<Field
+    id='terms'
+    name='terms'
+    as={CheckboxComponent}
+    label='Terms and Conditions'
+/>
+
 ```
 ## Development
 ```sh

@@ -1,5 +1,6 @@
-import InputComponent from './InputComponent';
-import SelectComponent from './SelectComponent';
-import RadioAndCheckBoxComponent from './RadioAndCheckBoxComponent';
+import InputComponent from "./InputComponent";
+import SelectComponent from "./SelectComponent";
+import RadioComponent from "./RadioComponent";
+import CheckboxComponent from "./CheckboxComponent";
 
-export { InputComponent, SelectComponent, RadioAndCheckBoxComponent };
+export { InputComponent, SelectComponent, RadioComponent, CheckboxComponent };
